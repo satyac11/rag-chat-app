@@ -31,7 +31,7 @@ A modern chat interface built with React that implements Retrieval-Augmented Gen
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/rag-chat-app.git
+git clone https://github.com/satyac11/rag-chat-app.git
 cd rag-chat-app
 ```
 
