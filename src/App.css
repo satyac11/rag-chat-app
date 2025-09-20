@@ -1,0 +1,211 @@
+/* Add CSS variables for both themes at the root level */
+:root[data-theme="light"] {
+  --bg-color: #f5f5f5;
+  --text-color: #333;
+  --message-bg: #E9ECEF;
+  --message-text: #000;
+  --input-bg: rgba(255, 255, 255, 0.1);
+  --input-border: #ddd;
+  --input-text: #333;
+  --form-bg: transparent;
+}
+
+:root[data-theme="dark"] {
+  --bg-color: #1a1a1a;
+  --text-color: #fff;
+  --message-bg: #2d2d2d;
+  --message-text: #fff;
+  --input-bg: #2d2d2d;
+  --input-border: #444;
+  --input-text: #fff;
+  --form-bg: transparent;
+}
+
+/* Update body and root styles to use theme variables */
+body, #root {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Update existing styles to use variables */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease;
+}
+
+.chat-container {
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.messages-container {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 80px;
+  background-color: var(--bg-color);
+}
+
+.message {
+  padding: 12px 16px;
+  margin: 8px 0;
+  border-radius: 8px;
+  max-width: 80%;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  width: fit-content; /* Makes the box fit the content */
+  min-width: 60px; /* Minimum width for very short messages */
+  background-color: var(--message-bg);
+  color: var(--message-text);
+}
+
+.message.user {
+  background-color: var(--message-bg);
+  color: var(--message-text);
+  margin-left: auto;
+}
+
+.message.assistant {
+  background-color: var(--message-bg);
+  color: var(--message-text);
+  margin-right: auto;
+}
+
+.message.error {
+  background-color: #dc3545;
+  color: white;
+  margin-right: auto;
+}
+
+.message.loading {
+  background-color: #E9ECEF;
+  color: #666;
+  margin-right: auto;
+  font-style: italic;
+}
+
+.form-container {
+  padding: 20px;
+  background-color: var(--bg-color);
+  transition: background-color 0.3s ease;
+  /* Remove or update the border if it exists */
+  border-top: none;
+}
+
+.input-form {
+  display: flex;
+  gap: 10px;
+  padding: 20px;
+  background-color: var(--bg-color);
+  border-top: 0px solid rgba(221, 221, 221, 0.4);
+  max-width: 768px;
+  margin: 0 auto;
+  width: 80%;
+  position: relative;
+  z-index: 1;
+}
+
+input {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 20px;
+  border: 1px solid var(--input-border);
+  background-color: var(--input-bg);
+  color: var(--input-text);
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+input:focus {
+  outline: none;
+  border-color: #007AFF;
+  box-shadow: 0 0 0 1px rgba(0, 122, 255, 0.1);
+}
+
+input::placeholder {
+  color: var(--input-text);
+  opacity: 0.7;
+}
+
+button {
+  padding: 12px 24px;
+  background-color: #007AFF;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.2s ease;
+}
+
+.logo-image:hover {
+  transform: scale(1.1);
+}
+
+/* Add these global styles to ensure full-page coverage */
+body, #root {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background-color: #f5f5f5;
+}
+
+.header {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  gap: 12px; /* Space between logo and button */
+  align-items: center;
+}
+
+.theme-toggle {
+  background: var(--message-bg);
+  color: var(--message-text);
+  border: 1px solid var(--input-border);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  transition: all 0.3s ease;
+}
+
+/* Adjust messages container padding to account for stacked header */
+.messages-container {
+  padding-left: 80px; /* Space for header */
+  padding-top: 20px; /* Reduced top padding */
+}
+
